@@ -903,16 +903,16 @@ class WebWeixin(object):
                 logging.info('天气')
                 # 处理天气查询
                 if self.step == 0:
-                    positionId, hasFound = getRegionId(content)
-                    if hasFound:
-                        # positionId = getRegionId(content)
-                        self.myResponse = 'http://mkt.chubao.cn/Hack/index.html?test=' + positionId
-                        self.step = -1
-                        self.selectIndex = -1
-                        self.myUser = ''
-                    else:
-                        self.myResponse = '请输入您的地理位置'
-                        self.step = 1
+                    # positionId, hasFound = getRegionId(content)
+                    # if hasFound:
+                    #     # positionId = getRegionId(content)
+                    #     self.myResponse = 'http://mkt.chubao.cn/Hack/index.html?test=' + positionId
+                    #     self.step = -1
+                    #     self.selectIndex = -1
+                    #     self.myUser = ''
+                    # else:
+                    self.myResponse = '请输入您的地理位置'
+                    self.step = 1
                 elif self.step == 1:
                     positionId = getRegionId(content)
                     self.myResponse = 'http://mkt.chubao.cn/Hack/index.html?test=' + positionId
