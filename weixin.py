@@ -71,13 +71,15 @@ def usage_process_express(line):
 
 
 def getRegionId(line):
+    hasFound = False
     posList = ['北京', '上海', '天津', '重庆', '黑龙江', '吉林', '辽宁', '河北', '山西', '陕西']
     dict_region = {'北京': '1', '上海': '17', '天津': '28', '重庆': '41', '黑龙江': '75', '吉林': '159', '辽宁': '210', '河北': '393',
                    '山西': '543', '陕西': '655'}
     for item in posList:
         if item in line:
             compname = item
-    return dict_region.get(compname)
+            hasFound = True
+    return dict_region.get(compname), hasFound
 
 
 def getRegionChinese(line):
@@ -861,7 +863,8 @@ class WebWeixin(object):
                     self.myResponse = '请输入当前您的地理位置'
                     self.step = 1
                 elif self.step == 1:
-                    self.myResponse = "京东 http://www.jd.com \n\n点评 http://www.dianping.com/"+getRegionChinese(content) +"\n\n"+"携程 http://www.ctrip.com \n\n"+"滴滴 http://www.xiaojukeji.com \n"
+                    self.myResponse = "京东 http://www.jd.com \n\n点评 http://www.dianping.com/" + getRegionChinese(
+                        content) + "\n\n" + "携程 http://www.ctrip.com \n\n" + "滴滴 http://www.xiaojukeji.com \n"
                     # positionString = getRegionChinese(content)
                     # self.myResponse = 'http://www.dianping.com/' + positionString
                     self.step = -1
@@ -900,8 +903,9 @@ class WebWeixin(object):
                 logging.info('天气')
                 # 处理天气查询
                 if self.step == 0:
-                    if True:
-                        positionId = getRegionId(content)
+                    positionId, hasFound = getRegionId(content)
+                    if hasFound:
+                        # positionId = getRegionId(content)
                         self.myResponse = 'http://mkt.chubao.cn/Hack/index.html?test=' + positionId
                         self.step = -1
                         self.selectIndex = -1
