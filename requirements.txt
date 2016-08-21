@@ -1,0 +1,8 @@
+colorama
+coloredlogs
+humanfriendly
+lxml
+qrcode
+requests
+six
+requests_toolbelt
