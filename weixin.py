@@ -861,7 +861,7 @@ class WebWeixin(object):
                     self.myResponse = '请输入当前您的地理位置'
                     self.step = 1
                 elif self.step == 1:
-                    self.myResponse = "点评 http://www.dianping.com/shenzhen \n 携程 http://www.ctrip.com"
+                    self.myResponse = "京东 http://www.jd.com \n\n点评 http://www.dianping.com/"+getRegionChinese(content) +"\n\n"+"携程 http://www.ctrip.com \n\n"+"滴滴 http://www.xiaojukeji.com \n"
                     # positionString = getRegionChinese(content)
                     # self.myResponse = 'http://www.dianping.com/' + positionString
                     self.step = -1
