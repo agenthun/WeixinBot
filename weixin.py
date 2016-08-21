@@ -970,6 +970,8 @@ class WebWeixin(object):
             if self.isPrepareMeeting and self.selectIndex == 3:
                 if self.step == -1:
                     self.selectIndex = -1
+                    self.myResponse = '您的备忘已设置成功,请放心吧,我会准时提醒您的!'
+                    self.webwxsendmsg(self.myResponse, msg['FromUserName'])
             else:
                 if self.webwxsendmsg(self.myResponse, msg['FromUserName']):
                     print '自动回复成功'
