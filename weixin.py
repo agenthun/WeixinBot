@@ -914,8 +914,8 @@ class WebWeixin(object):
                     self.myResponse = '请输入您的地理位置'
                     self.step = 1
                 elif self.step == 1:
-                    positionId = getRegionId(content)
-                    self.myResponse = 'http://mkt.chubao.cn/Hack/index.html?test=' + positionId
+                    positionId, hasFound = getRegionId(content)
+                    self.myResponse = 'http://mkt.chubao.cn/Hack/index.html?test=' + str(positionId)
                     self.step = -1
                     self.selectIndex = -1
                     self.myUser = ''
