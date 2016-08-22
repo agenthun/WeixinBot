@@ -43,8 +43,9 @@ def usage_process_express(line):
     dict = {'顺丰': 'sf', '申通': 'sto', '圆通': 'yt', '韵达': 'yd', '天天': 'tt', 'EMS': 'ems', '中通': 'zto',
             '汇通': 'ht', '全峰': 'qf', '德邦': 'db'}
 
-    digitList = {u'一', u'二', u'三', u'四', u'五', u'六', u'七', u'八', u'九'}
-    dict_digit = {u'一': '1', u'二': '2', u'三': '3', u'四': '4', u'五': '5', u'六': '6', u'七': '7', u'八': '8', u'九': '9'}
+    digitList = {u'一', u'二', u'三', u'四', u'五', u'六', u'七', u'八', u'九', u'零'}
+    dict_digit = {u'一': '1', u'二': '2', u'三': '3', u'四': '4', u'五': '5', u'六': '6', u'七': '7', u'八': '8', u'九': '9',
+                  u'零': '0'}
 
     strnum = ''
     compname = ''
@@ -936,23 +937,21 @@ class WebWeixin(object):
                     self.step = 3
                 elif self.step == 3:
 
-                    after = unicode(self.meetingTime, 'utf-8')
-                    now = datetime.datetime.now().strftime(u'%Y-%m-%d %H:%M:%S')
-                    max = datetime.datetime.strptime(after, u"%Y-%m-%d %H:%M:%S")
-
-                    min = datetime.datetime.strptime(now, u"%Y-%m-%d %H:%M:%S")
-                    time_sec_float1 = time.mktime(max.timetuple())
-                    time_sec_float2 = time.mktime(min.timetuple())
-
-                    self.myResponse = '您的备忘已设置成功,请放心吧,我会准时提醒您的!'
-                    self.webwxsendmsg(self.myResponse, msg['FromUserName'])
-
-                    longTimeLength = time_sec_float1 - time_sec_float2
-                    if longTimeLength < 1000 * 60:
-                        longTimeLength += 1000 * 60
-                    timer = threading.Timer(longTimeLength,
-                                            self.webwxsendmsg(self.meetingContent, msg['FromUserName']))
-                    timer.start()
+                    # after = unicode(self.meetingTime, 'utf-8')
+                    # now = datetime.datetime.now().strftime(u'%Y-%m-%d %H:%M:%S')
+                    # max = datetime.datetime.strptime(after, u"%Y-%m-%d %H:%M:%S")
+                    #
+                    # min = datetime.datetime.strptime(now, u"%Y-%m-%d %H:%M:%S")
+                    # time_sec_float1 = time.mktime(max.timetuple())
+                    # time_sec_float2 = time.mktime(min.timetuple())
+                    #
+                    #
+                    # longTimeLength = time_sec_float1 - time_sec_float2
+                    # if longTimeLength < 1000 * 60:
+                    #     longTimeLength += 1000 * 60
+                    # timer = threading.Timer(longTimeLength,
+                    #                         self.webwxsendmsg(self.meetingContent, msg['FromUserName']))
+                    # timer.start()
 
                     self.step = -1
 
@@ -973,6 +972,9 @@ class WebWeixin(object):
             if self.isPrepareMeeting and self.selectIndex == 3:
                 if self.step == -1:
                     self.selectIndex = -1
+                elif self.step == 3:
+                    self.myResponse = '您的备忘已设置成功,请放心吧,我会准时提醒您的!'
+                    self.webwxsendmsg(self.myResponse, msg['FromUserName'])
 
             else:
                 if self.webwxsendmsg(self.myResponse, msg['FromUserName']):
