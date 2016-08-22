@@ -94,3 +94,10 @@ ENV/
 .idea
 
 *.pyc
+
+msg*.json
+temp.wav
+saved/voices/
+saved/msgimgs/
+
+README_before.md
