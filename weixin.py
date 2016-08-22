@@ -945,13 +945,12 @@ class WebWeixin(object):
                     # time_sec_float1 = time.mktime(max.timetuple())
                     # time_sec_float2 = time.mktime(min.timetuple())
                     #
-                    #
                     # longTimeLength = time_sec_float1 - time_sec_float2
                     # if longTimeLength < 1000 * 60:
                     #     longTimeLength += 1000 * 60
-                    # timer = threading.Timer(longTimeLength,
-                    #                         self.webwxsendmsg(self.meetingContent, msg['FromUserName']))
-                    # timer.start()
+                    # timerMeeting = threading.Timer(longTimeLength,
+                    #                                self.webwxsendmsg(self.meetingContent, msg['FromUserName']))
+                    # timerMeeting.start()
 
                     self.step = -1
 
